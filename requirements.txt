@@ -5,3 +5,4 @@ gunicorn
 joblib
 matplotlib
 scikit-learn==1.5.2
+serverless-http==2.0.0
