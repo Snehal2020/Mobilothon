@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spare Parts Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .graph {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .info {
+            margin-top: 20px;
+        }
+
+
+
+        .container1 {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Spare Parts Prediction Model</h1>
+        <p>Predicting spare parts requirements to optimize manufacturing</p>
+    </header>
+    
+    <div class="container1">
+        <h2>Enter Details to Predict Quantity</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="CustomerID">Customer ID:</label>
+                <input type="text" id="CustomerID" name="CustomerID" placeholder="Enter Customer ID">
+            </div>
+            <div class="form-group">
+                <label for="Country">Country:</label>
+                <input type="text" id="Country" name="Country" placeholder="Enter Country">
+            </div>
+            <div class="form-group">
+                <label for="StockCode">Stock Code:</label>
+                <input type="text" id="StockCode" name="StockCode" placeholder="Enter Stock Code">
+            </div>
+            <div class="form-group">
+                <label for="UnitPrice">Unit Price:</label>
+                <input type="text" id="UnitPrice" name="UnitPrice" placeholder="Enter Unit Price">
+            </div>
+            <button type="submit">Show Quantity</button>
+        </form>
+
+        {% if predicted_quantity is not none %}
+        <div class="result">
+            <strong>Predicted Quantity:</strong> {{ predicted_quantity }}
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <div class="graph">
+            <h2>Actual vs Predicted Quantities</h2>
+            <img src="{{ url_for('plot') }}" alt="Prediction Graph">
+        </div>
+
+        <!-- <div class="info">
+            <h3>Model Performance Metrics</h3>
+            <p><strong>Mean Absolute Error (MAE):</strong> {{ mae }}</p>
+            <p><strong>Root Mean Squared Error (RMSE):</strong> {{ rmse }}</p>
+            <p><strong>R² Score:</strong> {{ r2 }}</p>
+            <p><strong>Error Percentage:</strong> {{ error_percentage }}%</p>
+        </div> -->
+
+        <div class="info">
+            <h3>About the Project</h3>
+            <p>This project predicts the required spare parts for a manufacturing company using machine learning. The goal is to optimize the inventory management and production process by accurately forecasting the demand for spare parts. The model uses historical data including sales quantity, unit price, customer information, and other relevant features to predict future demand.</p>
+        </div>
+    </div>
+
+</body>
+</html>
